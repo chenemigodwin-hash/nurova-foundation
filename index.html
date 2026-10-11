@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nurova Foundation - Protecting, educating, and empowering vulnerable children and women in underserved rural communities across Nigeria.">
+  <meta name="theme-color" content="#0F3D3A">
+  <title>Nurova Foundation | Hope, Care & Empowerment</title>
+
+  <!-- Google Fonts: Outfit (Headings) and Source Sans 3 (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --color-primary: #0F3D3A;        /* Deep Evergreen / Teal */
+      --color-primary-light: #1A5450;
+      --color-primary-dark: #092826;
+      --color-accent: #F2A93B;         /* Warm Accent Gold */
+      --color-accent-hover: #DE9327;
+      --color-accent-soft: #FDF4E5;
+      --color-bg-light: #EAF3EF;       /* Clean Off-White / Sage tint */
+      --color-bg-white: #FFFFFF;
+      --color-text-dark: #14201F;      /* Dark Charcoal Text */
+      --color-text-muted: #4A5B59;
+      --color-border: #D3E0DC;
+      --color-card-border: #E2ECE8;
+      --color-success: #2E8B73;
+      --color-danger: #D32F2F;
+
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 8px rgba(15, 61, 58, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 61, 58, 0.10);
+      --shadow-lg: 0 16px 40px rgba(15, 61, 58, 0.16);
+      --shadow-glow: 0 0 24px rgba(242, 169, 59, 0.35);
+
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.35s ease;
+      --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       GLOBAL RESET & ACCESSIBILITY
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-dark);
+      background-color: var(--color-bg-white);
+      line-height: 1.65;
+      font-size: clamp(16px, 1.1vw, 18px);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      outline: none;
+    }
+
+    /* Minimum tap target size of 44x44px for touch optimization */
+    button, 
+    .btn, 
+    .pill-btn,
+    .nav-link,
+    .accordion-trigger {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    /* Skip Link for Keyboard Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--color-accent);
+      color: var(--color-text-dark);
+      padding: 10px 18px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 36px);
+    }
+
+    .section-padding {
+      padding: clamp(52px, 8vw, 96px) 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: var(--font-heading);
+    }
+    .badge-gold {
+      background: rgba(242, 169, 59, 0.18);
+      color: #9C6007;
+      border: 1px solid rgba(242, 169, 59, 0.4);
+    }
+    .badge-primary-trans {
+      background: rgba(15, 61, 58, 0.12);
+      color: var(--color-primary);
+    }
+
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    .section-eyebrow {
+      color: #B8730A;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4.5vw, 44px);
+      margin-bottom: 16px;
+    }
+
+    .section-subheading {
+      color: var(--color-text-muted);
+      max-width: 680px;
+      font-size: clamp(17px, 1.5vw, 20px);
+      margin-bottom: clamp(32px, 5vw, 56px);
+    }
+
+    /* Common Button Styles */
+    .btn {
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-family: var(--font-heading);
+      letter-spacing: 0.3px;
+      transition: all var(--transition-normal);
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      gap: 8px;
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .btn-gold {
+      background: var(--color-accent);
+      color: var(--color-text-dark);
+      border: 2px solid var(--color-accent);
+    }
+    .btn-gold:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      box-shadow: var(--shadow-glow);
+      transform: translateY(-2px);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--color-bg-white);
+      border: 2px solid var(--color-bg-white);
+    }
+    .btn-outline-white:hover {
+      background: var(--color-bg-white);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      border: 2px solid var(--color-primary);
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-light);
+      border-color: var(--color-primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       STICKY HEADER & NAVIGATION
+       ========================================================================== */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      z-index: 1000;
+      transition: box-shadow var(--transition-normal), background var(--transition-normal);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .header-nav.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--color-bg-white);
+      text-decoration: none;
+    }
+    .brand-logo svg {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      color: var(--color-bg-white);
+    }
+    .brand-subtitle {
+      font-family: var(--font-heading);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--color-accent);
+      margin-top: 4px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-link {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      padding: 8px 4px;
+      transition: color var(--transition-fast);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-fast);
+    }
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Mobile Hamburger Button */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--color-bg-white);
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      flex-direction: column;
+      justify-content: space-around;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background: var(--color-bg-white);
+      border-radius: 2px;
+      transition: all var(--transition-normal);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Overlay / Menu */
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: var(--color-primary-dark);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px clamp(20px, 6vw, 36px) 36px;
+        gap: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+        transform: translateY(-120%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav-menu li {
+        width: 100%;
+      }
+      .nav-link {
+        width: 100%;
+        font-size: 19px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .nav-actions .btn-donate-nav {
+        display: none;
+      }
+      .nav-menu .mobile-donate-btn {
+        display: flex;
+        width: 100%;
+        margin-top: 12px;
+      }
+    }
+    @media (min-width: 901px) {
+      .nav-menu .mobile-donate-btn {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       HERO SECTION WITH DUAL CTA & IMAGE SLIDESHOW
+       ========================================================================== */
+    .hero-section {
+      background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+      color: var(--color-bg-white);
+      padding: clamp(48px, 8vw, 88px) 0 clamp(40px, 6vw, 72px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(242, 169, 59, 0.12) 0%, rgba(15, 61, 58, 0) 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-badge-wrap {
+      margin-bottom: 16px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(242, 169, 59, 0.16);
+      border: 1px solid rgba(242, 169, 59, 0.4);
+      color: var(--color-accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: var(--font-heading);
+    }
+    .hero-badge span.pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .hero-title {
+      color: var(--color-bg-white);
+      font-size: clamp(32px, 5.2vw, 56px);
+      line-height: 1.12;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero-title .highlight {
+      color: var(--color-accent);
+      position: relative;
+    }
+
+    .hero-desc {
+      font-size: clamp(17px, 2vw, 20px);
+      color: #D6E6E1;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    /* Automated Slideshow / Carousel */
+    .hero-carousel-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      background: #0E3533;
+      aspect-ratio: 4 / 3;
+      min-height: 320px;
+    }
+    .carousel-slide-wrapper {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, transform 1s ease-out;
+      transform: scale(1.04);
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .slide-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 61, 58, 0.1) 0%, rgba(9, 40, 38, 0.85) 100%);
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      color: var(--color-bg-white);
+      z-index: 2;
+    }
+    .slide-caption h4 {
+      color: var(--color-bg-white);
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    .slide-caption p {
+      font-size: 14px;
+      color: #E2ECE8;
+      margin-bottom: 0;
+    }
+
+    /* Carousel Controls */
+    .carousel-dots {
+      position: absolute;
+      bottom: 14px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      padding: 0;
+      min-height: auto;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .carousel-dot.active {
+      background: var(--color-accent);
+      width: 28px;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 61, 58, 0.7);
+      color: var(--color-bg-white);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background var(--transition-fast);
+    }
+    .carousel-nav-btn:hover {
+      background: var(--color-accent);
+      color: var(--color-text-dark);
+    }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    /* Core Pillars Strip */
+    .pillars-strip {
+      background: var(--color-primary-dark);
+      color: var(--color-bg-white);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px 0;
+    }
+    .pillars-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px 28px;
+      list-style: none;
+      font-family: var(--font-heading);
+      font-size: clamp(15px, 2.2vw, 19px);
+      font-weight: 600;
+    }
+    .pillars-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pillars-bullet {
+      color: var(--color-accent);
+      font-size: 20px;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE IMPACT & METRICS COUNTER
+       ========================================================================== */
+    .metrics-section {
+      background: var(--color-bg-white);
+      padding: clamp(40px, 6vw, 64px) 0;
+      border-bottom: 1px solid var(--color-card-border);
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+      }
+    }
+    @media (max-width: 480px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .metric-card {
+      padding: 20px 16px;
+      border-radius: var(--radius-md);
+      background: #F9FCFB;
+      border: 1px solid var(--color-border);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+    .metric-number {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 5vw, 48px);
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .metric-number .accent {
+      color: var(--color-accent);
+    }
+    .metric-label {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* ==========================================================================
+       ABOUT & MISSION SECTION
+       ========================================================================== */
+    .about-section {
+      background: var(--color-bg-light);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 64px);
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-img-main {
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+    .about-badge-card {
+      position: absolute;
+      bottom: -24px;
+      right: 20px;
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      max-width: 260px;
+      border-left: 5px solid var(--color-accent);
+    }
+    .about-badge-card strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+
+    .mission-quote {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 600;
+      color: var(--color-primary);
+      line-height: 1.45;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--color-accent);
+      padding-left: 18px;
+    }
+
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .pillar-tag {
+      background: var(--color-bg-white);
+      color: var(--color-primary);
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      border: 1px solid var(--color-border);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       "OUR WORK" / INTERACTIVE PROGRAMS ACCORDION
+       ========================================================================== */
+    .programs-section {
+      background: var(--color-bg-white);
+    }
+
+    .accordion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-white);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+    }
+    .accordion-item.active {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: #FFFFFF;
+      padding: 18px clamp(16px, 3.5vw, 28px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: var(--font-heading);
+      font-size: clamp(18px, 2.3vw, 22px);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-align: left;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+    .accordion-item.active .accordion-header {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+    }
+
+    .accordion-icon-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .program-icon-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--color-bg-light);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition-fast);
+    }
+    .accordion-item.active .program-icon-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--color-accent);
+    }
+
+    .accordion-toggle-indicator {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(15, 61, 58, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: transform var(--transition-normal), background var(--transition-fast);
+    }
+    .accordion-item.active .accordion-toggle-indicator {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height var(--transition-slow), opacity var(--transition-normal);
+      background: var(--color-bg-light);
+    }
+    .accordion-item.active .accordion-body {
+      opacity: 1;
+    }
+
+    .accordion-content-inner {
+      padding: clamp(20px, 4vw, 32px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(20px, 4vw, 36px);
+      align-items: center;
+    }
+    @media (max-width: 780px) {
+      .accordion-content-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .program-tag-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #9C6007;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .program-purpose-text {
+      font-size: 17px;
+      color: var(--color-text-dark);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .aims-obj-list {
+      list-style: none;
+      margin-bottom: 18px;
+      padding-left: 0;
+    }
+    .aims-obj-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--color-text-dark);
+    }
+    .aims-obj-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: 800;
+    }
+
+    .program-photo-box {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 240px;
+      background: #DCE8E4;
+    }
+    .program-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE GIVING & DONATION CALCULATOR
+       ========================================================================== */
+    .giving-section {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: var(--color-bg-white);
+      position: relative;
+    }
+
+    .giving-card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--color-bg-white);
+      color: var(--color-text-dark);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 44px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Frequency Switch */
+    .frequency-tabs {
+      display: flex;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-full);
+      padding: 4px;
+      max-width: 320px;
+      margin: 0 auto 28px;
+    }
+    .freq-tab {
+      flex: 1;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      background: transparent;
+      color: var(--color-text-dark);
+      font-weight: 600;
+      font-size: 15px;
+      transition: all var(--transition-fast);
+      min-height: 40px;
+    }
+    .freq-tab.active {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calc-row-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--color-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Currency selector pill */
+    .currency-switch {
+      display: inline-flex;
+      background: #EAF3EF;
+      border-radius: var(--radius-full);
+      padding: 2px;
+      font-size: 13px;
+    }
+    .currency-btn {
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: transparent;
+      font-weight: 700;
+      color: var(--color-primary);
+      min-height: auto;
+    }
+    .currency-btn.active {
+      background: var(--color-accent);
+      color: var(--color-text-dark);
+    }
+
+    /* Preset Amount Selector Pills */
+    .amount-pills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .amount-pill {
+      flex: 1 1 80px;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-primary);
+      font-size: 17px;
+      font-weight: 700;
+      background: var(--color-bg-white);
+      color: var(--color-primary);
+      transition: all var(--transition-fast);
+      min-height: 48px;
+      text-align: center;
+    }
+    .amount-pill:hover {
+      background: rgba(15, 61, 58, 0.08);
+    }
+    .amount-pill.active {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      box-shadow: 0 4px 12px rgba(15, 61, 58, 0.25);
+    }
+
+    /* Custom Amount Input Box */
+    .custom-amount-wrapper {
+      margin-bottom: 24px;
+      animation: fadeIn 0.3s ease;
+    }
+    .custom-input-box {
+      position: relative;
+      max-width: 360px;
+    }
+    .custom-currency-prefix {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-primary);
+      pointer-events: none;
+    }
+    .custom-amount-input {
+      width: 100%;
+      padding: 12px 16px 12px 38px;
+      font-size: 20px;
+      font-weight: 700;
+      border: 2px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      color: var(--color-primary);
+      background: var(--color-bg-white);
+    }
+    .custom-amount-input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(242, 169, 59, 0.25);
+    }
+    .custom-hint {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-top: 6px;
+    }
+
+    /* Cause Selector Pills */
+    .cause-pills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .cause-pill {
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--color-border);
+      background: #F8FAF9;
+      color: var(--color-text-dark);
+      font-weight: 600;
+      font-size: 15px;
+      transition: all var(--transition-fast);
+      min-height: 44px;
+    }
+    .cause-pill:hover {
+      border-color: var(--color-primary);
+    }
+    .cause-pill.active {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(15, 61, 58, 0.2);
+    }
+
+    /* Dynamic Impact Projection Banner */
+    .impact-projection-box {
+      background: var(--color-bg-light);
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .impact-projection-box svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .impact-projection-text {
+      font-size: 15px;
+      color: var(--color-text-dark);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* Summary Bar */
+    .gift-summary-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: #F4F8F6;
+      border: 1px solid var(--color-border);
+      margin-bottom: 24px;
+    }
+    .gift-summary-label {
+      font-size: 15px;
+      color: var(--color-text-muted);
+    }
+    .gift-summary-value {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    /* Action Buttons */
+    .giving-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .btn-toggle-bank {
+      flex: 1 1 240px;
+      background: var(--color-accent);
+      color: var(--color-text-dark);
+      border: 2px solid var(--color-accent);
+      font-size: 17px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-toggle-bank:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Expandable Bank Details Drawer */
+    .bank-details-drawer {
+      margin-top: 24px;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--color-border);
+      animation: fadeIn 0.4s ease;
+    }
+    .bank-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      .bank-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .bank-item {
+      background: var(--color-bg-white);
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    .bank-item-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+    .bank-item-value {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-primary);
+      min-height: auto;
+      transition: all var(--transition-fast);
+    }
+    .copy-btn:hover {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+    }
+
+    .reference-box {
+      background: rgba(242, 169, 59, 0.15);
+      border: 1px dashed var(--color-accent);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .reference-code {
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #8A4F00;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================================================
+       BENEFICIARY STORIES / TESTIMONIALS CAROUSEL
+       ========================================================================== */
+    .stories-section {
+      background: var(--color-bg-light);
+    }
+    .story-card-wrapper {
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .story-slider-box {
+      background: var(--color-bg-white);
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 6vw, 56px);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border);
+      position: relative;
+      min-height: 280px;
+    }
+    .quote-icon {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      width: 52px;
+      height: 52px;
+      color: rgba(242, 169, 59, 0.25);
+    }
+
+    .story-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .story-slide.active {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .story-text {
+      font-size: clamp(18px, 2.3vw, 22px);
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--color-primary-dark);
+      margin-bottom: 24px;
+    }
+
+    .beneficiary-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .beneficiary-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-accent);
+      background: #EAF3EF;
+      flex-shrink: 0;
+    }
+    .beneficiary-info h4 {
+      font-size: 18px;
+      color: var(--color-primary);
+      margin-bottom: 2px;
+    }
+    .beneficiary-info p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+    }
+
+    .story-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .story-arrow-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-border);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+    .story-arrow-btn:hover {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      transform: scale(1.05);
+    }
+    .story-dots-wrap {
+      display: flex;
+      gap: 8px;
+    }
+    .story-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #CAD8D4;
+      border: none;
+      min-height: auto;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .story-dot.active {
+      background: var(--color-accent);
+      width: 24px;
+      border-radius: var(--radius-full);
+    }
+
+    /* ==========================================================================
+       FAQ ACCORDION
+       ========================================================================== */
+    .faq-section {
+      background: var(--color-bg-white);
+    }
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--color-bg-white);
+      transition: border-color var(--transition-fast);
+    }
+    .faq-item.active {
+      border-color: var(--color-primary);
+    }
+    .faq-trigger {
+      width: 100%;
+      text-align: left;
+      padding: 18px 24px;
+      background: var(--color-bg-white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-primary);
+      transition: background var(--transition-fast);
+    }
+    .faq-trigger:hover {
+      background: #F8FAF9;
+    }
+    .faq-icon {
+      font-size: 20px;
+      color: var(--color-accent);
+      transition: transform var(--transition-fast);
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      background: #F9FCFB;
+    }
+    .faq-item.active .faq-answer {
+      opacity: 1;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      color: var(--color-text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       CONTACT & NEWSLETTER FOOTER
+       ========================================================================== */
+    .contact-section {
+      background: var(--color-bg-light);
+      border-top: 1px solid var(--color-card-border);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 64px);
+    }
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-card-box {
+      background: var(--color-bg-white);
+      border-radius: var(--radius-md);
+      padding: clamp(24px, 4vw, 36px);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+    .contact-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .contact-icon-bubble {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(15, 61, 58, 0.08);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--color-text-muted);
+    }
+    .contact-info-val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* Interactive Newsletter */
+    .newsletter-box {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      border-radius: var(--radius-md);
+      padding: clamp(24px, 4vw, 36px);
+      box-shadow: var(--shadow-md);
+    }
+    .newsletter-box h3 {
+      color: var(--color-bg-white);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .newsletter-box p {
+      color: #D6E6E1;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+    }
+    @media (max-width: 520px) {
+      .input-group {
+        flex-direction: column;
+      }
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-bg-white);
+      font-size: 16px;
+    }
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .newsletter-input:focus {
+      border-color: var(--color-accent);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-status {
+      font-size: 14px;
+      margin-top: 6px;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      color: #8CF2D2;
+    }
+    .form-status.error {
+      display: block;
+      color: #FF8F8F;
+    }
+
+    /* Main Footer */
+    .site-footer {
+      background: var(--color-primary-dark);
+      color: #A9CFC7;
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 15px;
+    }
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 900px) {
+      .footer-top-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 540px) {
+      .footer-top-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-col h5 {
+      color: var(--color-bg-white);
+      font-size: 18px;
+      margin-bottom: 18px;
+      font-family: var(--font-heading);
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION COMPONENT
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--color-primary);
+      color: var(--color-bg-white);
+      padding: 14px 22px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid var(--color-accent);
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       STICKY HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="header-nav" id="headerNav">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo & Name -->
+      <a href="#top" class="brand-logo" aria-label="Nurova Foundation Home">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="60" cy="60" r="56" fill="#FFFFFF"/>
+          <path d="M28 86 C28 52 44 32 60 32 C76 32 92 52 92 86" fill="none" stroke="#F2A93B" stroke-width="8" stroke-linecap="round"/>
+          <path d="M60 64 C60 52 66 45 78 43 C78 55 72 62 60 64 Z" fill="#2E8B73"/>
+          <circle cx="60" cy="76" r="10" fill="#0F3D3A"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">NUROVA</span>
+          <span class="brand-subtitle">FOUNDATION</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#work" class="nav-link">Our Work</a></li>
+          <li><a href="#impact" class="nav-link">Impact</a></li>
+          <li><a href="#give" class="nav-link">Donate</a></li>
+          <li><a href="#stories" class="nav-link">Stories</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <!-- Mobile Donate Button inside drawer -->
+          <li class="mobile-donate-btn">
+            <a href="#give" class="btn btn-gold" style="width: 100%;">Donate Now</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Call to Action & Hamburger -->
+      <div class="nav-actions">
+        <a href="#give" class="btn btn-gold btn-donate-nav">Donate Now</a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==========================================================================
+         HERO SECTION WITH DUAL CTA & IMAGE SLIDESHOW
+         ========================================================================== -->
+    <section class="hero-section" id="top">
+      <div class="container hero-grid">
+        
+        <!-- Left Column: Copy & Dual CTAs -->
+        <div class="hero-content">
+          <div class="hero-badge-wrap">
+            <div class="hero-badge">
+              <span class="pulse-dot"></span>
+              Non-Profit Charity · Nigeria
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            Hope and care for every <span class="highlight">child, woman</span> and community in need.
+          </h1>
+
+          <p class="hero-desc">
+            We support vulnerable children and women in rural villages affected by natural disasters, insecurity, and extreme poverty with rapid relief, quality education, and a lasting path to independence.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#give" class="btn btn-gold">
+              Give Today
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#work" class="btn btn-outline-white">
+              See Our Work
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Automated Carousel -->
+        <div class="hero-carousel-wrap">
+          <div class="hero-carousel-card" id="heroCarousel" aria-roledescription="carousel" aria-label="Nurova Field Work in Underserved Communities">
+            
+            <div class="carousel-slide-wrapper">
+              <!-- Slide 1: Education -->
+              <div class="carousel-slide active" data-slide="0">
+                <img 
+                  src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Vulnerable children in a classroom smiling and learning"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%231A5450\' width=\'800\' height=\'600\'/><text fill=\'%23F2A93B\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Child Education &amp; Welfare</text></svg>';">
+                <div class="slide-gradient"></div>
+                <div class="slide-caption">
+                  <h4>Child Education &amp; Welfare</h4>
+                  <p>Removing financial barriers so every child can learn with dignity.</p>
+                </div>
+              </div>
+
+              <!-- Slide 2: Clean Water -->
+              <div class="carousel-slide" data-slide="1">
+                <img 
+                  src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Rural community receiving clean safe drinking water"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%230F3D3A\' width=\'800\' height=\'600\'/><text fill=\'%23F2A93B\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Clean Water &amp; Sanitation</text></svg>';">
+                <div class="slide-gradient"></div>
+                <div class="slide-caption">
+                  <h4>Safe Water &amp; Sanitation</h4>
+                  <p>Bringing solar boreholes and clean hygiene to remote villages.</p>
+                </div>
+              </div>
+
+              <!-- Slide 3: Women's Empowerment -->
+              <div class="carousel-slide" data-slide="2">
+                <img 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Empowered African women engaged in vocational business training"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%2314201F\' width=\'800\' height=\'600\'/><text fill=\'%23F2A93B\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Women&#39;s Economic Independence</text></svg>';">
+                <div class="slide-gradient"></div>
+                <div class="slide-caption">
+                  <h4>Women's Economic Empowerment</h4>
+                  <p>Vocational training and startup micro-grants for rural mothers.</p>
+                </div>
+              </div>
+
+              <!-- Slide 4: Emergency Relief -->
+              <div class="carousel-slide" data-slide="3">
+                <img 
+                  src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Volunteers providing food relief and medical aid packages"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%23092826\' width=\'800\' height=\'600\'/><text fill=\'%23F2A93B\' font-family=\'sans-serif\' font-size=\'32\' font-weight=\'bold\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Emergency Rapid Relief</text></svg>';">
+                <div class="slide-gradient"></div>
+                <div class="slide-caption">
+                  <h4>Emergency Rapid Relief</h4>
+                  <p>Standing with displaced families during their most critical hours.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-nav-btn carousel-prev" id="carouselPrevBtn" aria-label="Previous Slide">
+              &#10094;
+            </button>
+            <button class="carousel-nav-btn carousel-next" id="carouselNextBtn" aria-label="Next Slide">
+              &#10095;
+            </button>
+
+            <!-- Slide Indicator Dots -->
+            <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Slideshow Selectors">
+              <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Slide 1" data-slide-to="0"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2" data-slide-to="1"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3" data-slide-to="2"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 4" data-slide-to="3"></button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CORE PILLARS BANNER
+         ========================================================================== */ -->
+    <div class="pillars-strip">
+      <div class="container">
+        <ul class="pillars-list">
+          <li><span>Emergency Relief</span></li>
+          <li class="pillars-bullet" aria-hidden="true">&#9679;</li>
+          <li><span>Education</span></li>
+          <li class="pillars-bullet" aria-hidden="true">&#9679;</li>
+          <li><span>Women's Empowerment</span></li>
+          <li class="pillars-bullet" aria-hidden="true">&#9679;</li>
+          <li><span>Livelihoods</span></li>
+          <li class="pillars-bullet" aria-hidden="true">&#9679;</li>
+          <li><span>Clean Water &amp; Health</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         INTERACTIVE IMPACT & METRICS COUNTER
+         ========================================================================== -->
+    <section class="metrics-section" id="impact" aria-label="Impact and Metrics">
+      <div class="container">
+        <div class="metrics-grid">
+          
+          <div class="metric-card">
+            <div class="metric-number" data-target="10450">
+              <span class="count">0</span><span class="accent">+</span>
+            </div>
+            <div class="metric-label">Lives Touched &amp; Supported</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number" data-target="48">
+              <span class="count">0</span><span class="accent">+</span>
+            </div>
+            <div class="metric-label">Rural Communities Served</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number" data-target="135">
+              <span class="count">0</span><span class="accent">+</span>
+            </div>
+            <div class="metric-label">Education Scholarships</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number" data-target="94">
+              <span class="count">0</span><span class="accent">%</span>
+            </div>
+            <div class="metric-label">Direct Aid Efficiency</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT & MISSION SECTION
+         ========================================================================== -->
+    <section class="section-padding about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          
+          <div class="about-visual">
+            <img 
+              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=80" 
+              alt="Volunteers and community members collaborating together" 
+              class="about-img-main"
+              onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\' viewBox=\'0 0 800 600\'><rect fill=\'%230F3D3A\' width=\'800\' height=\'600\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'28\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Community Transformation</text></svg>';">
+            
+            <div class="about-badge-card">
+              <strong>100% Accountable</strong>
+              Every contribution directly fuels field relief, tuition, and sustainable tools.
+            </div>
+          </div>
+
+          <div class="about-text">
+            <span class="section-eyebrow">Our Mission &amp; Purpose</span>
+            <h2 class="section-heading">Restoring Dignity to Overlooked Communities</h2>
+            
+            <blockquote class="mission-quote">
+              "To protect and empower vulnerable children and women in rural communities affected by natural disasters, insecurity, and poverty, through emergency relief, education, and sustainable livelihood support."
+            </blockquote>
+
+            <p>
+              We believe that genuine change begins at the grassroots. Rather than one-off handouts, Nurova Foundation partners with local elders, teachers, and mothers to design interventions that foster long-term self-reliance.
+            </p>
+
+            <div class="pillar-tags">
+              <span class="pillar-tag">🛡️ Child Protection</span>
+              <span class="pillar-tag">📚 Accessible Literacy</span>
+              <span class="pillar-tag">🌾 Agricultural Grants</span>
+              <span class="pillar-tag">💧 Clean Water Wells</span>
+              <span class="pillar-tag">🏥 Mobile Health Outreaches</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         "OUR WORK" / INTERACTIVE PROGRAMS ACCORDION
+         ========================================================================== -->
+    <section class="section-padding programs-section" id="work">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-eyebrow">Comprehensive Initiatives</span>
+          <h2 class="section-heading">What We Do</h2>
+          <p class="section-subheading mx-auto">
+            Click on any program below to discover our concrete purpose, aims, and measurable objectives.
+          </p>
+        </div>
+
+        <div class="accordion-list" id="programsAccordion">
+          
+          <!-- Program 1: Emergency Relief -->
+          <div class="accordion-item active" data-program-index="0" data-program-name="Emergency Relief">
+            <button class="accordion-header" aria-expanded="true" aria-controls="prog-body-0" id="prog-btn-0">
+              <div class="accordion-icon-wrap">
+                <div class="program-icon-badge" aria-hidden="true">🚨</div>
+                <span>Emergency Relief &amp; First Response</span>
+              </div>
+              <div class="accordion-toggle-indicator" aria-hidden="true">&#9662;</div>
+            </button>
+            <div class="accordion-body" id="prog-body-0" role="region" aria-labelledby="prog-btn-0" style="max-height: 1200px;">
+              <div class="accordion-content-inner">
+                <div>
+                  <span class="program-tag-label">Purpose</span>
+                  <p class="program-purpose-text">
+                    To stand with families in the first critical hours and days following natural disasters, sudden attacks, or forced displacement.
+                  </p>
+                  
+                  <span class="program-tag-label">Core Aims</span>
+                  <ul class="aims-obj-list">
+                    <li>Deliver immediate food rations, potable clean water, temporary shelters, and hygiene packs.</li>
+                    <li>Mobilize emergency trauma medical aid and critical wound stabilization.</li>
+                  </ul>
+
+                  <span class="program-tag-label">Measurable Objectives</span>
+                  <ul class="aims-obj-list">
+                    <li>Rapid deployment to affected remote communities within 48 to 72 hours of an incident.</li>
+                    <li>Provide 30-day survival packages to at least 500 displaced families during each crisis cycle.</li>
+                  </ul>
+
+                  <a href="#give" class="btn btn-primary support-prog-btn" data-cause="Emergency relief">
+                    Support This Program &rarr;
+                  </a>
+                </div>
+
+                <div class="program-photo-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=80" 
+                    alt="Volunteers organizing emergency relief packages"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect fill=\'%230F3D3A\' width=\'600\' height=\'400\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'22\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Emergency Relief Photo</text></svg>';">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program 2: Child Welfare & Education -->
+          <div class="accordion-item" data-program-index="1" data-program-name="Child Education">
+            <button class="accordion-header" aria-expanded="false" aria-controls="prog-body-1" id="prog-btn-1">
+              <div class="accordion-icon-wrap">
+                <div class="program-icon-badge" aria-hidden="true">🎒</div>
+                <span>Child Welfare &amp; Quality Education</span>
+              </div>
+              <div class="accordion-toggle-indicator" aria-hidden="true">&#9662;</div>
+            </button>
+            <div class="accordion-body" id="prog-body-1" role="region" aria-labelledby="prog-btn-1">
+              <div class="accordion-content-inner">
+                <div>
+                  <span class="program-tag-label">Purpose</span>
+                  <p class="program-purpose-text">
+                    To ensure every vulnerable, orphaned, and displaced child is safely protected, nurtured, and provided high-quality schooling.
+                  </p>
+                  
+                  <span class="program-tag-label">Core Aims</span>
+                  <ul class="aims-obj-list">
+                    <li>Dismantle the crushing financial hurdles that force children out of formal education.</li>
+                    <li>Promote child rights advocacy and safe child protection frameworks in rural schools.</li>
+                  </ul>
+
+                  <span class="program-tag-label">Measurable Objectives</span>
+                  <ul class="aims-obj-list">
+                    <li>Award 200+ annual full scholarships covering tuition, textbooks, uniforms, and daily lunch.</li>
+                    <li>Renovate 5 dilapidated rural classrooms and furnish them with solar reading lamps and desks.</li>
+                  </ul>
+
+                  <a href="#give" class="btn btn-primary support-prog-btn" data-cause="Child education">
+                    Support This Program &rarr;
+                  </a>
+                </div>
+
+                <div class="program-photo-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80" 
+                    alt="African children reading textbooks in class"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect fill=\'%231A5450\' width=\'600\' height=\'400\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'22\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Child Education Photo</text></svg>';">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program 3: Women's Empowerment -->
+          <div class="accordion-item" data-program-index="2" data-program-name="Women's Empowerment">
+            <button class="accordion-header" aria-expanded="false" aria-controls="prog-body-2" id="prog-btn-2">
+              <div class="accordion-icon-wrap">
+                <div class="program-icon-badge" aria-hidden="true">🌱</div>
+                <span>Women's Empowerment &amp; Skills</span>
+              </div>
+              <div class="accordion-toggle-indicator" aria-hidden="true">&#9662;</div>
+            </button>
+            <div class="accordion-body" id="prog-body-2" role="region" aria-labelledby="prog-btn-2">
+              <div class="accordion-content-inner">
+                <div>
+                  <span class="program-tag-label">Purpose</span>
+                  <p class="program-purpose-text">
+                    To equip widows, single mothers, and young girls with market-driven vocational skills and seed funding to achieve sustained independence.
+                  </p>
+                  
+                  <span class="program-tag-label">Core Aims</span>
+                  <ul class="aims-obj-list">
+                    <li>Cultivate practical vocational expertise in sustainable tailoring, agro-processing, and trade.</li>
+                    <li>Instill financial literacy, cooperative savings habits, and business management acumen.</li>
+                  </ul>
+
+                  <span class="program-tag-label">Measurable Objectives</span>
+                  <ul class="aims-obj-list">
+                    <li>Train 300 women per year through intensive 8-week vocational cohort programs.</li>
+                    <li>Disburse non-collateralized starter equipment kits and micro-grants to 150 top graduates.</li>
+                  </ul>
+
+                  <a href="#give" class="btn btn-primary support-prog-btn" data-cause="Women's empowerment">
+                    Support This Program &rarr;
+                  </a>
+                </div>
+
+                <div class="program-photo-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80" 
+                    alt="Women collaborating in a sewing and enterprise cooperative"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect fill=\'%230F3D3A\' width=\'600\' height=\'400\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'22\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Women Empowerment Photo</text></svg>';">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program 4: Livelihoods -->
+          <div class="accordion-item" data-program-index="3" data-program-name="Livelihoods">
+            <button class="accordion-header" aria-expanded="false" aria-controls="prog-body-3" id="prog-btn-3">
+              <div class="accordion-icon-wrap">
+                <div class="program-icon-badge" aria-hidden="true">🌾</div>
+                <span>Sustainable Livelihoods &amp; Farming</span>
+              </div>
+              <div class="accordion-toggle-indicator" aria-hidden="true">&#9662;</div>
+            </button>
+            <div class="accordion-body" id="prog-body-3" role="region" aria-labelledby="prog-btn-3">
+              <div class="accordion-content-inner">
+                <div>
+                  <span class="program-tag-label">Purpose</span>
+                  <p class="program-purpose-text">
+                    To enable rural agricultural households to overcome recurrent drought, stabilize crop yields, and permanently escape subsistence poverty.
+                  </p>
+                  
+                  <span class="program-tag-label">Core Aims</span>
+                  <ul class="aims-obj-list">
+                    <li>Distribute climate-resilient crop seeds, eco-friendly fertilizers, and modern storage bags.</li>
+                    <li>Organize smallholder farmers into cooperative unions for wholesale pricing power.</li>
+                  </ul>
+
+                  <span class="program-tag-label">Measurable Objectives</span>
+                  <ul class="aims-obj-list">
+                    <li>Support 120 smallholder family farms with high-yield grain seeds and organic inputs.</li>
+                    <li>Construct 3 community grain-banking hubs to prevent post-harvest spoilage.</li>
+                  </ul>
+
+                  <a href="#give" class="btn btn-primary support-prog-btn" data-cause="Where needed most">
+                    Support This Program &rarr;
+                  </a>
+                </div>
+
+                <div class="program-photo-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=700&q=80" 
+                    alt="Agricultural farmer holding healthy crops"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect fill=\'%231E5C56\' width=\'600\' height=\'400\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'22\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Livelihoods Photo</text></svg>';">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program 5: Health & Clean Water -->
+          <div class="accordion-item" data-program-index="4" data-program-name="Clean Water">
+            <button class="accordion-header" aria-expanded="false" aria-controls="prog-body-4" id="prog-btn-4">
+              <div class="accordion-icon-wrap">
+                <div class="program-icon-badge" aria-hidden="true">💧</div>
+                <span>Health Outreach &amp; Clean Water Wells</span>
+              </div>
+              <div class="accordion-toggle-indicator" aria-hidden="true">&#9662;</div>
+            </button>
+            <div class="accordion-body" id="prog-body-4" role="region" aria-labelledby="prog-btn-4">
+              <div class="accordion-content-inner">
+                <div>
+                  <span class="program-tag-label">Purpose</span>
+                  <p class="program-purpose-text">
+                    To deliver essential primary healthcare and eliminate cholera and waterborne infections through permanent solar-powered boreholes.
+                  </p>
+                  
+                  <span class="program-tag-label">Core Aims</span>
+                  <ul class="aims-obj-list">
+                    <li>Drill dependable, deep-aquifer clean water boreholes in arid rural clusters.</li>
+                    <li>Conduct free village medical missions focusing on maternal, newborn, and child wellness.</li>
+                  </ul>
+
+                  <span class="program-tag-label">Measurable Objectives</span>
+                  <ul class="aims-obj-list">
+                    <li>Commission 8 solar-powered water pumps serving over 15,000 villagers every day.</li>
+                    <li>Deliver deworming treatments, prenatal vitamins, and malaria bed nets to 1,200 mothers and infants.</li>
+                  </ul>
+
+                  <a href="#give" class="btn btn-primary support-prog-btn" data-cause="Where needed most">
+                    Support This Program &rarr;
+                  </a>
+                </div>
+
+                <div class="program-photo-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=700&q=80" 
+                    alt="Children joyfully drinking clean water from a pump"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect fill=\'%230F3D3A\' width=\'600\' height=\'400\'/><text fill=\'%23FFFFFF\' font-family=\'sans-serif\' font-size=\'22\' x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Clean Water Photo</text></svg>';">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE GIVING & DONATION CALCULATOR
+         ========================================================================== -->
+    <section class="section-padding giving-section" id="give">
+      <div class="container">
+        
+        <div class="text-center" style="margin-bottom: 36px;">
+          <span class="badge badge-gold" style="margin-bottom: 12px;">Direct Impact</span>
+          <h2 class="section-heading" style="color: #FFFFFF;">Make a Life-Changing Gift</h2>
+          <p class="section-subheading mx-auto" style="color: #D6E6E1; margin-bottom: 0;">
+            Every single naira or dollar creates ripples of hope. Choose a preset or custom amount and designate your preferred focus area.
+          </p>
+        </div>
+
+        <div class="giving-card" id="givingCard">
+          
+          <!-- Giving Frequency Tabs -->
+          <div class="frequency-tabs" role="tablist" aria-label="Donation Frequency">
+            <button class="freq-tab active" id="tabOneTime" role="tab" aria-selected="true" data-freq="one-time">One-Time Gift</button>
+            <button class="freq-tab" id="tabMonthly" role="tab" aria-selected="false" data-freq="monthly">Monthly Sustainer</button>
+          </div>
+
+          <!-- Amount Selection -->
+          <div class="calc-row-title">
+            <span>Select Amount</span>
+            <!-- Currency Switcher -->
+            <div class="currency-switch" role="group" aria-label="Currency Selector">
+              <button class="currency-btn active" id="currNGN" data-curr="NGN" aria-pressed="true">NGN (₦)</button>
+              <button class="currency-btn" id="currUSD" data-curr="USD" aria-pressed="false">USD ($)</button>
+            </div>
+          </div>
+
+          <!-- Preset Amount Pills Grid -->
+          <div class="amount-pills-grid" id="amountPillsContainer">
+            <!-- Injected via JavaScript based on active currency -->
+          </div>
+
+          <!-- Custom Amount Box (Hidden unless Custom is picked) -->
+          <div class="custom-amount-wrapper" id="customAmountWrap" style="display: none;">
+            <label for="customAmountInput" class="calc-row-title" style="margin-bottom: 6px;">Enter Custom Amount</label>
+            <div class="custom-input-box">
+              <span class="custom-currency-prefix" id="customCurrencySymbol">₦</span>
+              <input 
+                type="text" 
+                inputmode="numeric" 
+                id="customAmountInput" 
+                class="custom-amount-input" 
+                placeholder="e.g. 15,000"
+                aria-label="Custom donation amount">
+            </div>
+            <p class="custom-hint" id="customInputHint">Enter any amount from ₦50 upwards.</p>
+          </div>
+
+          <!-- Program Cause Designation -->
+          <div class="calc-row-title" style="margin-top: 20px;">
+            <span>Direct Your Impact Towards</span>
+          </div>
+
+          <div class="cause-pills-grid" id="causePillsContainer">
+            <button class="cause-pill active" data-cause="Emergency relief">Emergency Relief</button>
+            <button class="cause-pill" data-cause="Child education">Child Welfare &amp; Education</button>
+            <button class="cause-pill" data-cause="Women's empowerment">Women's Empowerment</button>
+            <button class="cause-pill" data-cause="Clean water">Health &amp; Clean Water</button>
+            <button class="cause-pill" data-cause="Where needed most">Where Needed Most</button>
+          </div>
+
+          <!-- Dynamic Real-time Impact Projection -->
+          <div class="impact-projection-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <div>
+              <strong style="color: var(--color-primary); display: block; font-size: 15px; margin-bottom: 2px;">Your Tangible Impact:</strong>
+              <p class="impact-projection-text" id="impactProjectionText">
+                Provides emergency high-protein food packs and survival supplies for a displaced family.
+              </p>
+            </div>
+          </div>
+
+          <!-- Dynamic Gift Summary Display -->
+          <div class="gift-summary-bar">
+            <div>
+              <div class="gift-summary-label">Selected Gift Summary</div>
+              <div class="gift-summary-value" id="giftSummaryValue">₦1,000 for Emergency Relief</div>
+            </div>
+            <div id="freqBadge" class="badge badge-gold">One-Time</div>
+          </div>
+
+          <!-- Call to Action Buttons -->
+          <div class="giving-actions-row">
+            <button class="btn btn-toggle-bank" id="btnToggleBank" aria-expanded="false" aria-controls="bankDetailsDrawer">
+              <span id="btnToggleText">Show Bank Transfer Details</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 6px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <button class="btn btn-primary" id="btnSimulateOnlinePay" style="flex: 1 1 200px;">
+              Pay Online / Card &rarr;
+            </button>
+          </div>
+
+          <!-- Expandable Bank Transfer & Details Drawer -->
+          <div class="bank-details-drawer" id="bankDetailsDrawer" style="display: none;">
+            <div style="margin-bottom: 16px;">
+              <h4 style="font-size: 19px; color: var(--color-primary); margin-bottom: 4px;">Verified Foundation Bank Details</h4>
+              <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 0;">
+                You can make an instant mobile transfer or cash deposit using these official non-profit accounts:
+              </p>
+            </div>
+
+            <div class="bank-grid">
+              
+              <div class="bank-item">
+                <div class="bank-item-label">Bank Name</div>
+                <div class="bank-item-value">
+                  <span>Zenith Bank PLC</span>
+                  <span class="badge badge-primary-trans">Primary</span>
+                </div>
+              </div>
+
+              <div class="bank-item">
+                <div class="bank-item-label">Account Name</div>
+                <div class="bank-item-value">
+                  <span>Nurova Foundation</span>
+                </div>
+              </div>
+
+              <div class="bank-item">
+                <div class="bank-item-label">Account Number (NGN)</div>
+                <div class="bank-item-value">
+                  <span id="accountNumText">1019283746</span>
+                  <button class="copy-btn" id="btnCopyAccount" data-clipboard="1019283746" title="Copy account number">Copy</button>
+                </div>
+              </div>
+
+              <div class="bank-item">
+                <div class="bank-item-label">Domiciliary / USD Account</div>
+                <div class="bank-item-value">
+                  <span id="domiciliaryNumText">5070291823</span>
+                  <button class="copy-btn" id="btnCopyDom" data-clipboard="5070291823" title="Copy domiciliary number">Copy</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Auto-generated dynamic payment reference -->
+            <div class="reference-box">
+              <div>
+                <span style="font-weight: 700; color: #8A4F00;">Suggested Payment Reference:</span>
+                <span class="reference-code" id="referenceCodeDisplay">REF-NUR-EMERG-8492</span>
+              </div>
+              <button class="copy-btn" id="btnCopyRef" style="border-color: #DE9327; background: #FFFFFF;" title="Copy payment reference">
+                Copy Reference
+              </button>
+            </div>
+
+            <p style="margin: 14px 0 0; font-size: 13px; color: var(--color-text-muted); text-align: center;">
+              After transferring, please forward your receipt to <strong>give@nurovafoundation.org</strong> or WhatsApp <strong>+234 (0) 800-NUROVA</strong> for instant official receipting.
+            </p>
+          </div>
+
+          <!-- Large Gifts Link -->
+          <p style="margin: 24px 0 0; font-size: 15px; color: var(--color-text-muted); text-align: center;">
+            Looking to make institutional grants, corporate CSR gifts, or wire transfers? Please <a href="#contact" style="color: var(--color-primary); font-weight: 700; text-decoration: underline;">contact our partnerships team</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         BENEFICIARY STORIES / TESTIMONIALS CAROUSEL
+         ========================================================================== -->
+    <section class="section-padding stories-section" id="stories">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-eyebrow">Real Lives Transformed</span>
+          <h2 class="section-heading">Stories of Resilience</h2>
+          <p class="section-subheading mx-auto">
+            Behind every number is a human life restored. Hear directly from beneficiaries whose lives were shaped by your generous support.
+          </p>
+        </div>
+
+        <div class="story-card-wrapper">
+          <div class="story-slider-box" id="storySlider">
+            
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+
+            <!-- Story 1 -->
+            <div class="story-slide active" data-story-index="0">
+              <p class="story-text">
+                "When my family lost our home during the floods, I feared my schooling was over forever. Nurova Foundation did not just give us emergency food; they gave me a full scholarship, new books, and a school bag. Today, I am top of my class and dream of becoming a medical doctor to heal my people."
+              </p>
+              <div class="beneficiary-meta">
+                <img 
+                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=150&q=80" 
+                  alt="Amina, scholarship recipient" 
+                  class="beneficiary-avatar"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23F2A93B\'/><text x=\'50%25\' y=\'55%25\' font-size=\'36\' fill=\'%230F3D3A\' text-anchor=\'middle\'>A</text></svg>';">
+                <div class="beneficiary-info">
+                  <h4>Amina, 13 years old</h4>
+                  <p>Scholarship Recipient · Borno State</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="story-slide" data-story-index="1">
+              <p class="story-text">
+                "As a widow with four young children, feeding them was an everyday battle. The vocational tailoring training and starter sewing machine I received from Nurova changed our destiny. I now run a thriving village tailoring shop and pay my children’s school fees entirely from my own profits."
+              </p>
+              <div class="beneficiary-meta">
+                <img 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" 
+                  alt="Fatima, vocational graduate" 
+                  class="beneficiary-avatar"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%230F3D3A\'/><text x=\'50%25\' y=\'55%25\' font-size=\'36\' fill=\'%23FFFFFF\' text-anchor=\'middle\'>F</text></svg>';">
+                <div class="beneficiary-info">
+                  <h4>Fatima Lawal</h4>
+                  <p>Vocational Enterprise Graduate · Kaduna State</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Story 3 -->
+            <div class="story-slide" data-story-index="2">
+              <p class="story-text">
+                "For decades our women and daughters walked over four kilometers each morning to fetch murky river water. Typhoid and cholera visited our children every dry season. When Nurova commissioned our solar-powered deep well, our lives were transformed overnight. Health has returned to our village."
+              </p>
+              <div class="beneficiary-meta">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" 
+                  alt="Elder Musa, village head" 
+                  class="beneficiary-avatar"
+                  onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'><circle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%232E8B73\'/><text x=\'50%25\' y=\'55%25\' font-size=\'36\' fill=\'%23FFFFFF\' text-anchor=\'middle\'>M</text></svg>';">
+                <div class="beneficiary-info">
+                  <h4>Elder Musa Dauda</h4>
+                  <p>Community Leader · Plateau State</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Story Controls -->
+          <div class="story-controls">
+            <button class="story-arrow-btn" id="storyPrevBtn" aria-label="Previous Testimonial">
+              &#10094;
+            </button>
+            <div class="story-dots-wrap" id="storyDots">
+              <button class="story-dot active" aria-label="Story 1" data-story-to="0"></button>
+              <button class="story-dot" aria-label="Story 2" data-story-to="1"></button>
+              <button class="story-dot" aria-label="Story 3" data-story-to="2"></button>
+            </div>
+            <button class="story-arrow-btn" id="storyNextBtn" aria-label="Next Testimonial">
+              &#10095;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAQ ACCORDION
+         ========================================================================== -->
+    <section class="section-padding faq-section" id="faq">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-eyebrow">Clear Transparency</span>
+          <h2 class="section-heading">Frequently Asked Questions</h2>
+          <p class="section-subheading mx-auto">
+            Everything you need to know about our legal structure, accountability standards, and how your donations work.
+          </p>
+        </div>
+
+        <div class="faq-list" id="faqAccordion">
+          
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>How is my donation allocated and accounted for?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                At Nurova Foundation, 94% of every donated naira goes directly to field programs (procuring emergency relief goods, paying school tuition, supplying medical outreach medicines, and drilling water boreholes). Only 6% is allocated to vital administrative logistics and monitoring. All disbursements comply strictly with the foundation's constitution and are independently audited.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Is Nurova Foundation officially registered in Nigeria?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. Nurova Foundation is a legally incorporated non-profit entity governed by a dedicated Board of Trustees under Nigerian law. We adhere to all statutory reporting regulations, including financial transparency and ethical non-governmental standards.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Can I donate from outside Nigeria using foreign currencies?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely. International supporters can contribute via our dedicated USD/Domiciliary bank account (provided in the donation drawer above) or through international debit/credit cards. You can toggle the currency switcher to USD ($) to view suggested giving tiers.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Can I sponsor a specific child or school indefinitely?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! We offer our "Adopt-a-Scholar" program where individual donors or organizations can support a specific student through primary or secondary graduation. Sponsors receive periodic academic progress updates and handwritten letters from their sponsored student.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>How can I volunteer or partner as an organization?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We warmly welcome medical professionals, educators, logistical volunteers, and corporate CSR partners. Please reach out to us using the contact form below or email <strong>partnerships@nurovafoundation.org</strong> with your areas of interest.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT & NEWSLETTER SECTION
+         ========================================================================== -->
+    <section class="section-padding contact-section" id="contact">
+      <div class="container">
+        
+        <div class="contact-grid">
+          
+          <!-- Contact Details -->
+          <div class="contact-card-box">
+            <span class="section-eyebrow">Reach Out</span>
+            <h3 style="font-size: 28px; margin-bottom: 8px;">We Would Love to Hear From You</h3>
+            <p style="color: var(--color-text-muted); font-size: 16px;">
+              Whether you want to partner, volunteer, request assistance for a rural community, or visit our operations, our team is ready to connect.
+            </p>
+
+            <ul class="contact-info-list">
+              
+              <li class="contact-info-item">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div>
+                  <div class="contact-info-label">Official Email</div>
+                  <a href="mailto:info@nurovafoundation.org" class="contact-info-val">info@nurovafoundation.org</a>
+                </div>
+              </li>
+
+              <li class="contact-info-item">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div>
+                  <div class="contact-info-label">Phone &amp; WhatsApp Support</div>
+                  <a href="tel:+234800687682" class="contact-info-val">+234 (0) 800-NUROVA (0800 687682)</a>
+                </div>
+              </li>
+
+              <li class="contact-info-item">
+                <div class="contact-icon-bubble" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div>
+                  <div class="contact-info-label">National Operations Office</div>
+                  <div class="contact-info-val">Plot 14, Community Outreach Way, Abuja, Nigeria</div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- Interactive Newsletter Signup -->
+          <div class="newsletter-box">
+            <span class="badge badge-gold" style="margin-bottom: 12px;">Stay Informed</span>
+            <h3>Join the Nurova Impact Circle</h3>
+            <p>
+              Receive verified monthly field dispatches, photos from our latest school deliveries, and audited financial summaries. Zero spam, unsubscribe whenever you wish.
+            </p>
+
+            <form class="newsletter-form" id="newsletterForm" novalidate>
+              <div class="input-group">
+                <input 
+                  type="email" 
+                  id="newsletterEmail" 
+                  class="newsletter-input" 
+                  placeholder="Enter your email address" 
+                  required 
+                  aria-label="Email address for monthly impact newsletter">
+                <button type="submit" class="btn btn-gold" id="newsletterSubmitBtn" style="white-space: nowrap;">
+                  Subscribe
+                </button>
+              </div>
+              <div class="form-status" id="formStatusMsg" role="alert"></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        
+        <!-- Brand Summary -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <svg width="38" height="38" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" fill="#FFFFFF"/>
+              <path d="M28 86 C28 52 44 32 60 32 C76 32 92 52 92 86" fill="none" stroke="#F2A93B" stroke-width="8" stroke-linecap="round"/>
+              <path d="M60 64 C60 52 66 45 78 43 C78 55 72 62 60 64 Z" fill="#2E8B73"/>
+              <circle cx="60" cy="76" r="10" fill="#0F3D3A"/>
+            </svg>
+            <span class="brand-text">
+              <span class="brand-title" style="font-size: 20px;">NUROVA</span>
+              <span class="brand-subtitle" style="font-size: 8px;">FOUNDATION</span>
+            </span>
+          </div>
+          <p style="font-size: 14px; line-height: 1.6; color: #A9CFC7; margin-bottom: 18px;">
+            A dedicated non-profit organization focused on protecting, educating, and uplifting vulnerable children, widows, and rural communities across Nigeria.
+          </p>
+          <div style="font-size: 13px; color: var(--color-accent);">
+            Registered Non-Governmental Organization
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h5>Quick Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="#about">About Our Mission</a></li>
+            <li><a href="#work">Programs &amp; Focus Areas</a></li>
+            <li><a href="#impact">Impact Statistics</a></li>
+            <li><a href="#stories">Beneficiary Stories</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <!-- Focus Pillars -->
+        <div class="footer-col">
+          <h5>Focus Pillars</h5>
+          <ul class="footer-links">
+            <li><a href="#work">Emergency Rapid Relief</a></li>
+            <li><a href="#work">Child Education Welfare</a></li>
+            <li><a href="#work">Women's Empowerment</a></li>
+            <li><a href="#work">Sustainable Livelihoods</a></li>
+            <li><a href="#work">Solar Clean Water Wells</a></li>
+          </ul>
+        </div>
+
+        <!-- Accountability & Legal -->
+        <div class="footer-col">
+          <h5>Accountability</h5>
+          <ul class="footer-links">
+            <li><a href="#give">Direct Giving Options</a></li>
+            <li><a href="#contact">Partnership Inquiry</a></li>
+            <li><a href="#faq">Constitutional Audits</a></li>
+            <li><a href="mailto:privacy@nurovafoundation.org">Privacy Policy</a></li>
+            <li><a href="mailto:terms@nurovafoundation.org">Donor Charter</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear">2026</span> Nurova Foundation. All rights reserved.
+        </div>
+        <div style="color: #A9CFC7; font-size: 13px;">
+          Built with care for underserved communities.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+       MODAL: SIMULATED ONLINE CARD CHECKOUT
+       ========================================================================== -->
+  <div id="cardModal" style="display: none; position: fixed; inset: 0; background: rgba(9, 40, 38, 0.75); backdrop-filter: blur(4px); z-index: 10001; align-items: center; justify-content: center; padding: 16px;">
+    <div style="background: #FFFFFF; border-radius: var(--radius-lg); max-width: 460px; width: 100%; padding: 28px; box-shadow: var(--shadow-lg); animation: fadeIn 0.3s ease; position: relative;">
+      <button id="closeModalBtn" aria-label="Close dialog" style="position: absolute; top: 16px; right: 16px; background: transparent; font-size: 22px; color: var(--color-text-muted); cursor: pointer; min-height: auto;">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(242, 169, 59, 0.2); color: #B8730A; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 24px;">💳</div>
+        <h3 style="font-size: 22px; color: var(--color-primary); margin-bottom: 4px;">Instant Card Giving</h3>
+        <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 0;">Secured with 256-bit SSL encryption</p>
+      </div>
+
+      <div style="background: var(--color-bg-light); padding: 14px 18px; border-radius: var(--radius-sm); margin-bottom: 20px; text-align: center;">
+        <span style="font-size: 13px; color: var(--color-text-muted); display: block;">Donation Amount</span>
+        <strong id="modalAmountDisplay" style="font-size: 24px; color: var(--color-primary);">₦1,000</strong>
+        <span id="modalCauseDisplay" style="font-size: 13px; color: var(--color-text-dark); display: block; margin-top: 2px;">for Emergency Relief</span>
+      </div>
+
+      <form id="mockPaymentForm" onsubmit="event.preventDefault(); window.handleMockPaymentSubmit();">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">Full Name</label>
+          <input type="text" required placeholder="e.g. Mary Okonkwo" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-size: 15px;">
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">Card Number</label>
+          <input type="text" maxlength="19" placeholder="4123 •••• •••• 9821" required style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-size: 15px;">
+        </div>
+        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+          <div style="flex: 1;">
+            <label style="display: block; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">Expiry Date</label>
+            <input type="text" placeholder="MM/YY" maxlength="5" required style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-size: 15px;">
+          </div>
+          <div style="flex: 1;">
+            <label style="display: block; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px;">CVV</label>
+            <input type="password" placeholder="123" maxlength="4" required style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); font-size: 15px;">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold" id="btnProcessPayment" style="width: 100%; font-size: 16px;">
+          Complete Donation
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: ALL LOGIC & INTERACTION
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+
+      // ------------------------------------------------------------------------
+      // 1. Toast Notification Helper
+      // ------------------------------------------------------------------------
+      const toastContainer = document.getElementById('toastContainer');
+      function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        
+        const iconSvg = type === 'success' 
+          ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+          : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+
+        toast.innerHTML = `${iconSvg}<span>${message}</span>`;
+        toastContainer.appendChild(toast);
+
+        // Animate in
+        requestAnimationFrame(() => {
+          toast.classList.add('show');
+        });
+
+        // Remove after 3.5s
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 350);
+        }, 3500);
+      }
+
+      // ------------------------------------------------------------------------
+      // 2. Sticky Navbar & Mobile Hamburger Drawer
+      // ------------------------------------------------------------------------
+      const headerNav = document.getElementById('headerNav');
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) {
+          headerNav.classList.add('scrolled');
+        } else {
+          headerNav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        navMenu.classList.toggle('open');
+      });
+
+      // Close mobile menu when a nav link is clicked
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          navMenu.classList.remove('open');
+        });
+      });
+
+      // Update current copyright year dynamically
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // ------------------------------------------------------------------------
+      // 3. Hero Section Automated Carousel (Smooth 4s cross-fade)
+      // ------------------------------------------------------------------------
+      const heroSlides = Array.from(document.querySelectorAll('.carousel-slide'));
+      const heroDots = Array.from(document.querySelectorAll('.carousel-dot'));
+      const prevBtn = document.getElementById('carouselPrevBtn');
+      const nextBtn = document.getElementById('carouselNextBtn');
+      const carouselContainer = document.getElementById('heroCarousel');
+
+      let currentHeroSlide = 0;
+      let heroSlideInterval = null;
+      const totalHeroSlides = heroSlides.length;
+
+      function goToHeroSlide(index) {
+        heroSlides[currentHeroSlide].classList.remove('active');
+        heroDots[currentHeroSlide].classList.remove('active');
+        heroDots[currentHeroSlide].setAttribute('aria-selected', 'false');
+
+        currentHeroSlide = (index + totalHeroSlides) % totalHeroSlides;
+
+        heroSlides[currentHeroSlide].classList.add('active');
+        heroDots[currentHeroSlide].classList.add('active');
+        heroDots[currentHeroSlide].setAttribute('aria-selected', 'true');
+      }
+
+      function startHeroSlideTimer() {
+        stopHeroSlideTimer();
+        heroSlideInterval = setInterval(() => {
+          goToHeroSlide(currentHeroSlide + 1);
+        }, 4000);
+      }
+
+      function stopHeroSlideTimer() {
+        if (heroSlideInterval) {
+          clearInterval(heroSlideInterval);
+          heroSlideInterval = null;
+        }
+      }
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          goToHeroSlide(currentHeroSlide - 1);
+          startHeroSlideTimer();
+        });
+        nextBtn.addEventListener('click', () => {
+          goToHeroSlide(currentHeroSlide + 1);
+          startHeroSlideTimer();
+        });
+      }
+
+      heroDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          goToHeroSlide(idx);
+          startHeroSlideTimer();
+        });
+      });
+
+      // Pause carousel on hover or touch focus for accessibility
+      carouselContainer.addEventListener('mouseenter', stopHeroSlideTimer);
+      carouselContainer.addEventListener('mouseleave', startHeroSlideTimer);
+      carouselContainer.addEventListener('focusin', stopHeroSlideTimer);
+      carouselContainer.addEventListener('focusout', startHeroSlideTimer);
+
+      startHeroSlideTimer();
+
+      // ------------------------------------------------------------------------
+      // 4. Metrics & Impact Counter Animation (IntersectionObserver)
+      // ------------------------------------------------------------------------
+      const metricNumbers = document.querySelectorAll('.metric-number');
+      let countersStarted = false;
+
+      function startCounters() {
+        if (countersStarted) return;
+        countersStarted = true;
+
+        metricNumbers.forEach(el => {
+          const target = parseInt(el.getAttribute('data-target'), 10);
+          const countSpan = el.querySelector('.count');
+          if (!countSpan || isNaN(target)) return;
+
+          const duration = 1800;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease-out cubic
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.floor(easeOutProgress * target);
+
+            countSpan.textContent = currentVal.toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              countSpan.textContent = target.toLocaleString();
+            }
+          }
+          requestAnimationFrame(updateCounter);
+        });
+      }
+
+      const metricsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startCounters();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      const metricsSection = document.getElementById('impact');
+      if (metricsSection) metricsObserver.observe(metricsSection);
+
+      // ------------------------------------------------------------------------
+      // 5. "Our Work" Programs Accordion
+      // ------------------------------------------------------------------------
+      const accordionItems = Array.from(document.querySelectorAll('#programsAccordion .accordion-item'));
+
+      accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const body = item.querySelector('.accordion-body');
+
+        header.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+
+          // Close all other accordion items
+          accordionItems.forEach(otherItem => {
+            otherItem.classList.remove('active');
+            const otherHeader = otherItem.querySelector('.accordion-header');
+            const otherBody = otherItem.querySelector('.accordion-body');
+            otherHeader.setAttribute('aria-expanded', 'false');
+            otherBody.style.maxHeight = '0px';
+          });
+
+          // Toggle clicked item
+          if (!isActive) {
+            item.classList.add('active');
+            header.setAttribute('aria-expanded', 'true');
+            body.style.maxHeight = body.scrollHeight + 40 + 'px';
+          }
+        });
+      });
+
+      // Hook up "Support This Program" buttons inside each accordion card
+      const supportProgButtons = document.querySelectorAll('.support-prog-btn');
+      supportProgButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const cause = btn.getAttribute('data-cause');
+          if (cause) {
+            selectDonationCause(cause);
+          }
+        });
+      });
+
+      // ------------------------------------------------------------------------
+      // 6. Interactive Giving & Donation Calculator
+      // ------------------------------------------------------------------------
+      const donationState = {
+        frequency: 'one-time', // 'one-time' or 'monthly'
+        currency: 'NGN',       // 'NGN' or 'USD'
+        selectedAmount: 1000,
+        isCustom: false,
+        customAmountVal: 1000,
+        cause: 'Emergency relief'
+      };
+
+      const presetData = {
+        NGN: [
+          { label: '₦500', value: 500 },
+          { label: '₦1,000', value: 1000 },
+          { label: '₦5,000', value: 5000 },
+          { label: '₦20,000', value: 20000 },
+          { label: 'Other', value: 'custom' }
+        ],
+        USD: [
+          { label: '$15', value: 15 },
+          { label: '$35', value: 35 },
+          { label: '$75', value: 75 },
+          { label: '$150', value: 150 },
+          { label: 'Other', value: 'custom' }
+        ]
+      };
+
+      const impactDescriptions = {
+        NGN: [
+          { threshold: 800, text: "Provides 2 weeks of clean drinking water purification supplies and emergency hygiene kits for a rural household." },
+          { threshold: 3000, text: "Supplies emergency rations and high-protein therapeutic food packs for a displaced child and mother." },
+          { threshold: 10000, text: "Fully covers a child's term tuition, classroom uniforms, textbooks, and daily school meals." },
+          { threshold: Infinity, text: "Provides a woman or widow with vocational training, sewing/craft equipment, and a micro-grant to launch her business." }
+        ],
+        USD: [
+          { threshold: 20, text: "Provides 2 weeks of clean drinking water purification supplies and emergency hygiene kits for a rural household." },
+          { threshold: 50, text: "Supplies emergency rations and high-protein therapeutic food packs for a displaced child and mother." },
+          { threshold: 100, text: "Fully covers a child's term tuition, classroom uniforms, textbooks, and daily school meals." },
+          { threshold: Infinity, text: "Provides a woman or widow with vocational training, sewing/craft equipment, and a micro-grant to launch her business." }
+        ]
+      };
+
+      const amountPillsContainer = document.getElementById('amountPillsContainer');
+      const customAmountWrap = document.getElementById('customAmountWrap');
+      const customAmountInput = document.getElementById('customAmountInput');
+      const customCurrencySymbol = document.getElementById('customCurrencySymbol');
+      const customInputHint = document.getElementById('customInputHint');
+      const causePillsContainer = document.getElementById('causePillsContainer');
+      const impactProjectionText = document.getElementById('impactProjectionText');
+      const giftSummaryValue = document.getElementById('giftSummaryValue');
+      const freqBadge = document.getElementById('freqBadge');
+      const referenceCodeDisplay = document.getElementById('referenceCodeDisplay');
+
+      // Currency Switches
+      const currNGN = document.getElementById('currNGN');
+      const currUSD = document.getElementById('currUSD');
+
+      function renderAmountPills() {
+        amountPillsContainer.innerHTML = '';
+        const presets = presetData[donationState.currency];
+
+        presets.forEach(p => {
+          const pill = document.createElement('button');
+          pill.className = 'amount-pill';
+          pill.textContent = p.label;
+          pill.type = 'button';
+
+          const isActive = (donationState.isCustom && p.value === 'custom') ||
+                           (!donationState.isCustom && donationState.selectedAmount === p.value);
+
+          if (isActive) pill.classList.add('active');
+
+          pill.addEventListener('click', () => {
+            if (p.value === 'custom') {
+              donationState.isCustom = true;
+              customAmountWrap.style.display = 'block';
+              customAmountInput.focus();
+            } else {
+              donationState.isCustom = false;
+              donationState.selectedAmount = p.value;
+              customAmountWrap.style.display = 'none';
+            }
+            renderAmountPills();
+            updateGivingSummary();
+          });
+
+          amountPillsContainer.appendChild(pill);
+        });
+
+        // Set symbol
+        customCurrencySymbol.textContent = donationState.currency === 'NGN' ? '₦' : '$';
+        customInputHint.textContent = donationState.currency === 'NGN' 
+          ? 'Enter any amount from ₦50 upwards.' 
+          : 'Enter any amount from $5 upwards.';
+      }
+
+      function updateGivingSummary() {
+        const currSymbol = donationState.currency === 'NGN' ? '₦' : '$';
+        const effectiveAmount = donationState.isCustom ? donationState.customAmountVal : donationState.selectedAmount;
+        const formattedAmt = `${currSymbol}${Number(effectiveAmount).toLocaleString()}`;
+        
+        // Frequency badge
+        freqBadge.textContent = donationState.frequency === 'monthly' ? 'Monthly Sustainer' : 'One-Time';
+
+        // Summary text
+        giftSummaryValue.textContent = `${formattedAmt} for ${donationState.cause}`;
+
+        // Impact explanation
+        const impacts = impactDescriptions[donationState.currency];
+        const match = impacts.find(item => effectiveAmount <= item.threshold) || impacts[impacts.length - 1];
+        impactProjectionText.textContent = match.text;
+
+        // Auto-generate reference code
+        const causeSlug = donationState.cause.split(' ')[0].toUpperCase().substring(0, 5);
+        const randomHex = Math.floor(1000 + Math.random() * 9000);
+        const refCode = `REF-NUR-${causeSlug}-${randomHex}`;
+        referenceCodeDisplay.textContent = refCode;
+
+        // Update modal values if open
+        const modalAmt = document.getElementById('modalAmountDisplay');
+        const modalCause = document.getElementById('modalCauseDisplay');
+        if (modalAmt) modalAmt.textContent = formattedAmt;
+        if (modalCause) modalCause.textContent = `for ${donationState.cause} (${donationState.frequency})`;
+      }
+
+      // Frequency switch
+      const tabOneTime = document.getElementById('tabOneTime');
+      const tabMonthly = document.getElementById('tabMonthly');
+
+      tabOneTime.addEventListener('click', () => {
+        tabOneTime.classList.add('active');
+        tabOneTime.setAttribute('aria-selected', 'true');
+        tabMonthly.classList.remove('active');
+        tabMonthly.setAttribute('aria-selected', 'false');
+        donationState.frequency = 'one-time';
+        updateGivingSummary();
+      });
+
+      tabMonthly.addEventListener('click', () => {
+        tabMonthly.classList.add('active');
+        tabMonthly.setAttribute('aria-selected', 'true');
+        tabOneTime.classList.remove('active');
+        tabOneTime.setAttribute('aria-selected', 'false');
+        donationState.frequency = 'monthly';
+        updateGivingSummary();
+      });
+
+      // Currency switch buttons
+      currNGN.addEventListener('click', () => {
+        currNGN.classList.add('active');
+        currNGN.setAttribute('aria-pressed', 'true');
+        currUSD.classList.remove('active');
+        currUSD.setAttribute('aria-pressed', 'false');
+        donationState.currency = 'NGN';
+        donationState.selectedAmount = 1000;
+        donationState.customAmountVal = 1000;
+        donationState.isCustom = false;
+        customAmountWrap.style.display = 'none';
+        renderAmountPills();
+        updateGivingSummary();
+      });
+
+      currUSD.addEventListener('click', () => {
+        currUSD.classList.add('active');
+        currUSD.setAttribute('aria-pressed', 'true');
+        currNGN.classList.remove('active');
+        currNGN.setAttribute('aria-pressed', 'false');
+        donationState.currency = 'USD';
+        donationState.selectedAmount = 35;
+        donationState.customAmountVal = 35;
+        donationState.isCustom = false;
+        customAmountWrap.style.display = 'none';
+        renderAmountPills();
+        updateGivingSummary();
+      });
+
+      // Custom Amount Input event
+      customAmountInput.addEventListener('input', (e) => {
+        const clean = e.target.value.replace(/[^0-9]/g, '');
+        const val = parseInt(clean, 10);
+        donationState.customAmountVal = isNaN(val) || val <= 0 ? 0 : val;
+        e.target.value = clean ? Number(clean).toLocaleString() : '';
+        updateGivingSummary();
+      });
+
+      // Cause pills
+      const causePills = causePillsContainer.querySelectorAll('.cause-pill');
+      function selectDonationCause(targetCause) {
+        causePills.forEach(pill => {
+          if (pill.getAttribute('data-cause').toLowerCase() === targetCause.toLowerCase()) {
+            pill.classList.add('active');
+            donationState.cause = pill.textContent;
+          } else {
+            pill.classList.remove('active');
+          }
+        });
+        updateGivingSummary();
+      }
+
+      causePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          causePills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          donationState.cause = pill.textContent;
+          updateGivingSummary();
+        });
+      });
+
+      // Toggle Bank Details Drawer
+      const btnToggleBank = document.getElementById('btnToggleBank');
+      const btnToggleText = document.getElementById('btnToggleText');
+      const bankDetailsDrawer = document.getElementById('bankDetailsDrawer');
+
+      btnToggleBank.addEventListener('click', () => {
+        const isShown = bankDetailsDrawer.style.display !== 'none';
+        if (isShown) {
+          bankDetailsDrawer.style.display = 'none';
+          btnToggleBank.setAttribute('aria-expanded', 'false');
+          btnToggleText.textContent = 'Show Bank Transfer Details';
+        } else {
+          bankDetailsDrawer.style.display = 'block';
+          btnToggleBank.setAttribute('aria-expanded', 'true');
+          btnToggleText.textContent = 'Hide Bank Transfer Details';
+          bankDetailsDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+
+      // Copy to Clipboard buttons
+      function setupCopyBtn(btnId, textGetter, successMsg) {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        btn.addEventListener('click', async () => {
+          const text = typeof textGetter === 'function' ? textGetter() : textGetter;
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast(successMsg, 'success');
+          } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showToast(successMsg, 'success');
+          }
+        });
+      }
+
+      setupCopyBtn('btnCopyAccount', '1019283746', 'Zenith Bank account number copied!');
+      setupCopyBtn('btnCopyDom', '5070291823', 'Domiciliary USD account number copied!');
+      setupCopyBtn('btnCopyRef', () => referenceCodeDisplay.textContent, 'Payment reference code copied!');
+
+      // Initial render of amount pills
+      renderAmountPills();
+      updateGivingSummary();
+
+      // ------------------------------------------------------------------------
+      // 7. Beneficiary Stories Carousel
+      // ------------------------------------------------------------------------
+      const storySlides = Array.from(document.querySelectorAll('.story-slide'));
+      const storyDots = Array.from(document.querySelectorAll('.story-dot'));
+      const storyPrevBtn = document.getElementById('storyPrevBtn');
+      const storyNextBtn = document.getElementById('storyNextBtn');
+
+      let currentStory = 0;
+      const totalStories = storySlides.length;
+
+      function goToStory(index) {
+        storySlides[currentStory].classList.remove('active');
+        storyDots[currentStory].classList.remove('active');
+
+        currentStory = (index + totalStories) % totalStories;
+
+        storySlides[currentStory].classList.add('active');
+        storyDots[currentStory].classList.add('active');
+      }
+
+      if (storyPrevBtn && storyNextBtn) {
+        storyPrevBtn.addEventListener('click', () => goToStory(currentStory - 1));
+        storyNextBtn.addEventListener('click', () => goToStory(currentStory + 1));
+      }
+
+      storyDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => goToStory(idx));
+      });
+
+      // ------------------------------------------------------------------------
+      // 8. FAQ Accordion Logic
+      // ------------------------------------------------------------------------
+      const faqItems = Array.from(document.querySelectorAll('#faqAccordion .faq-item'));
+
+      faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const answer = item.querySelector('.faq-answer');
+
+        trigger.addEventListener('click', () => {
+          const isOpen = item.classList.contains('active');
+
+          // Close other FAQs for a clean accordion experience
+          faqItems.forEach(other => {
+            other.classList.remove('active');
+            other.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+            other.querySelector('.faq-answer').style.maxHeight = '0px';
+          });
+
+          if (!isOpen) {
+            item.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 30 + 'px';
+          }
+        });
+      });
+
+      // ------------------------------------------------------------------------
+      // 9. Interactive Newsletter Form
+      // ------------------------------------------------------------------------
+      const newsletterForm = document.getElementById('newsletterForm');
+      const newsletterEmail = document.getElementById('newsletterEmail');
+      const formStatusMsg = document.getElementById('formStatusMsg');
+      const newsletterSubmitBtn = document.getElementById('newsletterSubmitBtn');
+
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = newsletterEmail.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email || !emailRegex.test(email)) {
+          formStatusMsg.className = 'form-status error';
+          formStatusMsg.textContent = 'Please provide a valid email address.';
+          newsletterEmail.focus();
+          return;
+        }
+
+        // Simulate request
+        newsletterSubmitBtn.disabled = true;
+        newsletterSubmitBtn.textContent = 'Subscribing...';
+
+        setTimeout(() => {
+          newsletterSubmitBtn.disabled = false;
+          newsletterSubmitBtn.textContent = 'Subscribed ✓';
+          formStatusMsg.className = 'form-status success';
+          formStatusMsg.textContent = 'Thank you! You are now subscribed to the Nurova Impact Circle.';
+          showToast('Welcome to the Nurova Impact Circle!', 'success');
+          newsletterEmail.value = '';
+        }, 800);
+      });
+
+      // ------------------------------------------------------------------------
+      // 10. Simulated Online Card Checkout Modal
+      // ------------------------------------------------------------------------
+      const cardModal = document.getElementById('cardModal');
+      const btnSimulateOnlinePay = document.getElementById('btnSimulateOnlinePay');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const btnProcessPayment = document.getElementById('btnProcessPayment');
+
+      btnSimulateOnlinePay.addEventListener('click', () => {
+        cardModal.style.display = 'flex';
+      });
+
+      closeModalBtn.addEventListener('click', () => {
+        cardModal.style.display = 'none';
+      });
+
+      cardModal.addEventListener('click', (e) => {
+        if (e.target === cardModal) {
+          cardModal.style.display = 'none';
+        }
+      });
+
+      window.handleMockPaymentSubmit = function() {
+        btnProcessPayment.disabled = true;
+        btnProcessPayment.textContent = 'Processing securely...';
+
+        setTimeout(() => {
+          btnProcessPayment.disabled = false;
+          btnProcessPayment.textContent = 'Complete Donation';
+          cardModal.style.display = 'none';
+          showToast('Thank you! Your donation was completed successfully.', 'success');
+        }, 1200);
+      };
+
+    });
+  </script>
+</body>
+</html>
